@@ -21,7 +21,7 @@ k = omega*(a**2 - b**2)/(a**2 + b**2)
 # Définir la zone d'intérêt en créant une grille de points
 x1_min, x1_max = -1, 1
 x2_min, x2_max = -1, 1
-step = 0.1  # Pas de la grille
+step = 0.05  # Pas de la grille
 x1 = np.arange(x1_min, x1_max, step)
 x2 = np.arange(x2_min, x2_max, step)
 X1, X2 = np.meshgrid(x1, x2)
@@ -69,20 +69,7 @@ def update(val):
     V2[mask] = k*X1_rot[mask]
     l.set_UVC(V1[mask], V2[mask])
 
-    #evolution de la position de la particule et modification de sa position sachant que sa vitesse est V = k*position
-    d0 = po1-po2
-    p[0]=0.5(d0 + np.exp(2*k*stime.val)*d0)
-    p[1]=0.5(d0 - np.exp(2*k*stime.val)*d0)
-    part[0].set_xdata(p[0])
-    part[0].set_ydata(p[1])
-
-    
-
-
-
 stime.on_changed(update)
-
-
 
 # Affichage de la figure
 plt.show()
