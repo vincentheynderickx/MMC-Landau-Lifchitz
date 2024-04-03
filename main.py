@@ -9,8 +9,8 @@ fps = 60           # Frames par seconde
 a = 1
 
 # Définiion d'une fonction b(t) affine par morceaux qui passe par les palliers 1, 0.9, 0.5, 0.1 et qui évolue avec une pente 1 entre ces palliers
-deltaTEvo = 0.2
-deltaTPallier = 8
+deltaTEvo = 0.3
+deltaTPallier = 9
 def b(t):
     if t < deltaTPallier:
         return 1
@@ -43,6 +43,7 @@ points, = ax.plot([], [], '+', markersize=2, animated=True)
 
 # Ajout du texte pour afficher la valeur de t
 time_text = ax.text(0.02, 0.95, '', transform=ax.transAxes)
+b_text = ax.text(0.02, 0.9, 'a = {:.2f}'.format(a), transform=ax.transAxes)
 b_text = ax.text(0.02, 0.85, '', transform=ax.transAxes)
 
 # Fonction d'initialisation de l'animation
