@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.patches import Ellipse
+from matplotlib.lines import Line2D
 
 # Paramètres de l'animation
 omega = 2*np.pi/10
@@ -38,6 +39,10 @@ ax.set_ylim(-1.2, 1.2)
 ellipse = Ellipse((0,0), 2*a, 2*b(0), fill=False, edgecolor='black', linewidth=3, linestyle='--')
 ax.add_patch(ellipse)
 
+# Création du segment représentant le grand axe de l'ellipse
+line = Line2D([-a * np.cos(0), a * np.cos(0)], [ -a * np.sin(0), a * np.sin(0)], color='black', linewidth=2, linestyle='--', animated=True, zorder=10, alpha=0.5)
+ax.add_line(line)
+
 # Initialisation du point
 points, = ax.plot([], [], '+', markersize=2, animated=True)
 
@@ -52,7 +57,7 @@ def init():
     points.set_data([], [])
     time_text.set_text('')
     b_text.set_text('')
-    return ellipse, points, time_text, b_text,
+    return ellipse, line, points, time_text, b_text,
 
 # Paramètres des points
 N = 70
@@ -78,9 +83,10 @@ def animate(frame):
     points.set_data(X1_rotated, X2_rotated)
     ellipse.set_angle(omega * t * 180 / np.pi)
     ellipse.set_height(2*b(t))
+    line.set_data([-a * np.cos(omega * t), a * np.cos(omega * t)], [ -a * np.sin(omega * t), a * np.sin(omega * t)])  # Mise à jour de la position du segment
     time_text.set_text('t = {:.2f}'.format(t))  # Affichage de la valeur de t
     b_text.set_text('b = {:.2f}'.format(b(t)))
-    return ellipse, points, time_text, b_text,
+    return ellipse, line, points, time_text, b_text,
 
 # Configuration de l'animation
 ani = FuncAnimation(fig, animate, frames=np.arange(0, T*fps, 1),
