@@ -79,7 +79,6 @@ def animate(frame):
     X2 = (b_val)*X2_inside * np.cos(-omega_ellipse*t) + (b_val)*X1_inside * np.sin(-omega_ellipse*t)  # Calcul de la position en y
     X1_rotated = np.cos(omega*t)*X1 - np.sin(omega*t)*X2  # Calcul de la position en x après rotation
     X2_rotated = np.sin(omega*t)*X1 + np.cos(omega*t)*X2  # Calcul de la position en y après rotation
-    X1_grid, X2_grid = np.meshgrid(X1_rotated, X2_rotated)
     points.set_data(X1_rotated, X2_rotated)
     ellipse.set_angle(omega * t * 180 / np.pi)
     ellipse.set_height(2*b(t))
