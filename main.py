@@ -97,4 +97,4 @@ ax.set_aspect('equal')
 ax.grid(False)
 #Export solution to compressed video
 ani.save('ellipse.mp4', writer='ffmpeg', fps=fps, dpi=100)
-
+ani.save('ellipse.gif', writer='pillow', fps=fps, dpi=100)
