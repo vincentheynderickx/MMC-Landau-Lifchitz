@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter
+import networkx as nx
 from matplotlib.patches import Ellipse
 from matplotlib.lines import Line2D
 
@@ -94,4 +95,6 @@ ani = FuncAnimation(fig, animate, frames=np.arange(0, T*fps, 1),
 # Affichage de l'animation
 ax.set_aspect('equal')
 ax.grid(False)
-plt.show()
+#Export solution to compressed video
+ani.save('ellipse.mp4', writer='ffmpeg', fps=fps, dpi=100)
+
