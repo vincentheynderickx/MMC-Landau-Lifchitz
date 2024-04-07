@@ -47,6 +47,13 @@ ax.add_line(line)
 # Initialisation du point
 points, = ax.plot([], [], '+', markersize=2, animated=True)
 
+# tracé des lignes de courant
+# z = np.linspace(-1.2, 1.2, 100)
+# I, J = np.meshgrid(z, z)
+# U = 2*I**2
+# V =2* J**2
+# ax.streamplot(z, z, U, V, color='black', linewidth=0.5)
+
 # Ajout du texte pour afficher la valeur de t
 time_text = ax.text(0.02, 0.95, '', transform=ax.transAxes)
 b_text = ax.text(0.02, 0.9, 'a = {:.2f}'.format(a), transform=ax.transAxes)
@@ -96,5 +103,6 @@ ani = FuncAnimation(fig, animate, frames=np.arange(0, T*fps, 1),
 ax.set_aspect('equal')
 ax.grid(False)
 #Export solution to compressed video
-ani.save('ellipse.mp4', writer='ffmpeg', fps=fps, dpi=100)
-ani.save('ellipse.gif', writer='pillow', fps=fps, dpi=100)
+#ani.save('ellipse.mp4', writer='ffmpeg', fps=fps, dpi=100)
+#ani.save('ellipse.gif', writer='pillow', fps=fps, dpi=100)
+plt.show()
